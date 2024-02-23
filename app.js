@@ -54,7 +54,7 @@ function convertDate(timeString) {
 		weekday: "long",
 		hour: "numeric",
 		minute: "numeric",
-		hour12: true,
+		hourCycle: "h12",
 	};
 
 	// Format the date to the desired format
