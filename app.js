@@ -1,7 +1,14 @@
 const apiEndpoint = 'https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&current=temperature_2m,weather_code,wind_speed_10m&wind_speed_unit=mph&timezone=GMT&forecast_days=1'
+// use DOM manipulation to get elements
+const weatherImg = document.querySelector("#weatherConditionImg");
+const weatherTemp = document.querySelector("#weatherTemp");
+const weatherLoc = document.querySelector("#weatherLocation");
+const locationDay = document.querySelector("#locationDay");
+const locationTime = document.querySelector("#locationTime");
+const weatherCondition = document.querySelector("#weatherCondition");
+
+
 // Create a async function to call back weather api data
-
-
 async function getWeatherData() {
     // // Use fetch to get api JSON response
     try { 
@@ -11,8 +18,6 @@ async function getWeatherData() {
         }
         // // parse response using josn()
         const data = await response.json()
-        console.log(data);
-
         return data;
     }
     // // Catch error
@@ -20,13 +25,22 @@ async function getWeatherData() {
         console.error("Could not fetch weather data: ", error);
     }
     
-    //  calling data in another function
-    // callback(data)
 }
 
-getWeatherData();
 // Create function to use data from api (async)
-// use DOM manipulation to get elements
-// feed data to selected DOM elements
+async function handleData() {
+    const weatherData = await getWeatherData();
+    console.log(weatherData);
+
+    // feed data to selected DOM elements
+
+
+}
+
+handleData();
+
+
+
+
 // // select temp, day , time and location condition 
 
