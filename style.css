@@ -24,6 +24,7 @@ body {
 .weather__icon {
     width: 100px;
     height: auto;
+    font-size: 100px;
 }
 
 .weather__temperature {
