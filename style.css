@@ -5,7 +5,13 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .weather__container {
@@ -13,41 +19,52 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    padding: 40px;
+    box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.37);
+    max-width: 600px;
 }
 
 .weather__details, .location__details {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .weather__icon {
-    width: 100px;
+    width: 150px;
     height: auto;
-    font-size: 100px;
+    font-size: 150px;
 }
 
 .weather__temperature {
     display: block;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 15px;
+    color: #034078;
 }
 
 .location__title {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #034078;
 }
 
 .location__data {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .location__day, .location__time {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    color: #03658C;
 }
 
 .location__condition {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
+    color: #03256C;
 }
