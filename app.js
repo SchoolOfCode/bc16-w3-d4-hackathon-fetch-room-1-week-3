@@ -1,22 +1,30 @@
-const api = 'https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&current=temperature_2m,weather_code,wind_speed_10m&wind_speed_unit=mph&timezone=GMT&forecast_days=1'
+const apiEndpoint = 'https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&current=temperature_2m,weather_code,wind_speed_10m&wind_speed_unit=mph&timezone=GMT&forecast_days=1'
 // Create a async function to call back weather api data
 
 
-async function getWeatherData(callback) {
+async function getWeatherData() {
     // // Use fetch to get api JSON response
-    const response = await fetch(api,{method:'GET'})
+    try { 
+        const response = await fetch(apiEndpoint,{method:'GET'})
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // // parse response using josn()
+        const data = await response.json()
+        console.log(data);
 
-    // // parse response using josn()
-    const data = await response.json()
-    
-    // // Catch error
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        return data;
     }
+    // // Catch error
+    catch(error) {
+        console.error("Could not fetch weather data: ", error);
+    }
+    
     //  calling data in another function
-    callback(data)
+    // callback(data)
 }
 
+getWeatherData();
 // Create function to use data from api (async)
 // use DOM manipulation to get elements
 // feed data to selected DOM elements
