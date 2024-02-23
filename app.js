@@ -4,8 +4,7 @@ const apiEndpoint =
 const weatherImg = document.querySelector("#weatherConditionImg");
 const weatherTemp = document.querySelector("#weatherTemp");
 const weatherLoc = document.querySelector("#weatherLocation");
-const locationDay = document.querySelector("#locationDay");
-const locationTime = document.querySelector("#locationTime");
+const timeDisplay = document.querySelector("#timeDisplay");
 const weatherCondition = document.querySelector("#weatherCondition");
 
 // Create a async function to call back weather api data
@@ -33,38 +32,24 @@ async function handleData() {
 	// feed data to selected DOM elements
 	// save elements as variables
 	const temp = Math.round(weatherData.current.temperature_2m);
-	const weekDay = convertDate(weatherData.current.time);
-
-	console.log(convertTime(weatherData.current.time));
+	const formattedTime = convertDate(weatherData.current.time);
 
 	weatherTemp.textContent = `${temp}°C`;
-	locationDay.textContent = `${weekDay}`;
+	timeDisplay.textContent = `${formattedTime}`;
 }
 
-function convertDate(date) {
-	const todaysDate = new Date(date);
-	const dayNum = todaysDate.getDay();
+function convertDate(timeString) {
+    // Convert the time string to a Date object
+    const date = new Date(timeString);
 
-	// extract day of the week
-	const dayNames = [
-		"Sunday",
-		"Monday",
-		"Tuesday",
-		"Wednesday",
-		"Thursday",
-		"Friday",
-		"Saturday",
-	];
+    // Define options for toLocaleString() to format the date
+    const options = { weekday: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
 
-	const weekday = dayNames[dayNum];
-	// Return the day of the week
-	return weekday;
-}
+    // Format the date to the desired format
+    const formattedTime = date.toLocaleString('en-GB', options);
 
-function convertTime(time) {
-	const dateArray = time.split("T");
-	const hourMin = dateArray[1];
-	console.log(hourMin);
+    // Output: "Friday, 10:30 AM"
+    return formattedTime;
 }
 
 handleData();
